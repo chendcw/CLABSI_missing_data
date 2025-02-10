@@ -23,8 +23,6 @@ datasets_files <- list.files(data_path_play_dyn_miss,
 train_files <- datasets_files[str_detect(datasets_files, "train")]
 test_files <- datasets_files[str_detect(datasets_files, "test")]
 
-# train_files <- train_files[72]
-# test_files <- test_files[72]
 
 # keep results
 predictions <- init_preds_BASE_DYN()
@@ -134,14 +132,8 @@ for (f in train_files){
   data_train$MS_medical_specialty_bin_drop_Cardiac <- as.factor(data_train$MS_medical_specialty_bin_drop_Cardiac)
   data_train$MS_medical_specialty_bin_drop_Traumatology <- as.factor(data_train$MS_medical_specialty_bin_drop_Traumatology)
   data_train$MS_medical_specialty_bin_drop_Pediatrics <- as.factor(data_train$MS_medical_specialty_bin_drop_Pediatrics)
-  # data_train$LAB_is_neutropenia <- as.factor(data_train$LAB_is_neutropenia)
   data_train$ADM_admission_source_binary_all_Home <- as.factor(data_train$ADM_admission_source_binary_all_Home)
-  # data_train$MS_medical_specialty <- as.factor(data_train$MS_medical_specialty)
-  
-  # data_train$CAT_lumens_CVC <- as.factor(data_train$CAT_lumens_CVC)
-  # data_train$CAT_lumens_Tunneled_CVC <- as.factor(data_train$CAT_lumens_Tunneled_CVC)
-  # data_train$CAT_lumens_PICC <- as.factor(data_train$CAT_lumens_PICC)
-  # data_train$CARE_NEU_GCS_score_last <- as.factor(data_train$CARE_NEU_GCS_score_last)
+
   
   set.seed(2024)
   start_time_imputation <- Sys.time()
@@ -151,15 +143,10 @@ for (f in train_files){
   predMat[,c("functioneelDossierNr")] <- 0
   
   imputeMethod <- make.method(data_train)
-  # polyreg_vars <- c("MS_medical_specialty")
   logreg_vars <- c("ADM_admission_source_binary_all_Home", "MS_medical_specialty_bin_drop_Cardiac", "MS_medical_specialty_bin_drop_Traumatology", "MS_medical_specialty_bin_drop_Pediatrics")
-  
-  # imputeMethod[polyreg_vars] <- "polyreg"     # polyreg regression for count variables
   imputeMethod[logreg_vars] <- "logreg"  # Logistic regression for binary variables
-  # imputeMethod[linear_vars] <- "pmm" 
+
   
-  
-  ## do not allow Y in imputation model 
   MI <- mice(data_train, m = 10, predictorMatrix = predMat, method = imputeMethod, maxit = 5, print = F) 
   # mi_x_train <- mice::complete(imp.train, action = "long", include = TRUE)
   # imputed.train <- as.mids(mi_x_train)
@@ -184,14 +171,7 @@ for (f in train_files){
   data_test$MS_medical_specialty_bin_drop_Cardiac <- as.factor(data_test$MS_medical_specialty_bin_drop_Cardiac)
   data_test$MS_medical_specialty_bin_drop_Traumatology <- as.factor(data_test$MS_medical_specialty_bin_drop_Traumatology)
   data_test$MS_medical_specialty_bin_drop_Pediatrics <- as.factor(data_test$MS_medical_specialty_bin_drop_Pediatrics)
-  # data_test$LAB_is_neutropenia <- as.factor(data_test$LAB_is_neutropenia)
   data_test$ADM_admission_source_binary_all_Home <- as.factor(data_test$ADM_admission_source_binary_all_Home)
-  # data_test$MS_medical_specialty <- as.factor(data_test$MS_medical_specialty)
-  
-  # data_test$CAT_lumens_CVC <- as.factor(data_test$CAT_lumens_CVC)
-  # data_test$CAT_lumens_Tunneled_CVC <- as.factor(data_test$CAT_lumens_Tunneled_CVC)
-  # data_test$CAT_lumens_PICC <- as.factor(data_test$CAT_lumens_PICC)
-  # data_test$CARE_NEU_GCS_score_last <- as.factor(data_test$CARE_NEU_GCS_score_last)
   
   imp.test <- mice.mids(MI, newdata = data_test, maxit = 5)
   
