@@ -328,8 +328,7 @@ for (f in train_files){
 }
 
 # save predictions 
-save(predictions, file = paste0("/data/leuven/342/vsc34229/clabsi_r/playground/3_Imputation_for_Dynamic_CLABSI_Prediction_in_EHR_Data/predictions/", preds_name))
-save(results, file = paste0("/data/leuven/342/vsc34229/clabsi_r/playground/3_Imputation_for_Dynamic_CLABSI_Prediction_in_EHR_Data/performances/", results_name))
-save(coefs, file = paste0("/data/leuven/342/vsc34229/clabsi_r/playground/3_Imputation_for_Dynamic_CLABSI_Prediction_in_EHR_Data/coefs/", coefs_name))
-save(timings, file = paste0("/data/leuven/342/vsc34229/clabsi_r/playground/3_Imputation_for_Dynamic_CLABSI_Prediction_in_EHR_Data/timings/", timings_name))
-
+save(predictions, file = paste0("playground/3_Imputation_for_Dynamic_CLABSI_Prediction_in_EHR_Data/predictions/", preds_name))
+save(results, file = paste0("playground/3_Imputation_for_Dynamic_CLABSI_Prediction_in_EHR_Data/performances/", results_name))
+save(coefs, file = paste0("playground/3_Imputation_for_Dynamic_CLABSI_Prediction_in_EHR_Data/coefs/", coefs_name))
+save(timings, file = paste0("playground/3_Imputation_for_Dynamic_CLABSI_Prediction_in_EHR_Data/timings/", timings_name))
