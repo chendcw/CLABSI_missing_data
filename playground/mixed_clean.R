@@ -23,8 +23,6 @@ datasets_files <- list.files(data_path_play_dyn_miss,
 train_files <- datasets_files[str_detect(datasets_files, "train")]
 test_files <- datasets_files[str_detect(datasets_files, "test")]
 
-# train_files <- train_files[72]
-# test_files <- test_files[72]
 
 # keep results
 predictions <- init_preds_BASE_DYN()
