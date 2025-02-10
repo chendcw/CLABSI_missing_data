@@ -1,6 +1,8 @@
 # imputation study configuration
 library(mice)
 
+data_path_play_dyn_miss <- "data_for_models/2012_2013/missing/DYN/"
+
 # vars with identification & outcome
 vars_id_outcome <- c("functioneelDossierNr", 
                      "CAT_catheter_episode",
