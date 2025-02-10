@@ -1,6 +1,6 @@
 ## this is for imputation method: mice + mi ##
 # source all files in the R directory
-files_to_source <- list.files("/data/leuven/342/vsc34229/clabsi_r/R/", recursive = TRUE, full.names = TRUE)
+files_to_source <- list.files("R/", recursive = TRUE, full.names = TRUE)
 invisible(lapply(files_to_source, function(x) source(x, chdir = TRUE)))
 
 # config for this imputation method
