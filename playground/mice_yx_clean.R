@@ -99,8 +99,6 @@ for (f in train_files){
   imputeMethod[logreg_vars] <- "logreg"  # Logistic regression for binary variables
 
   
-  
-  ## do not allow Y in imputation model 
   MI <- mice(data_train, m = 10, predictorMatrix = predMat, method = imputeMethod, maxit = 5, print = F) 
   # mi_x_train <- mice::complete(imp.train, action = "long", include = TRUE)
   # imputed.train <- as.mids(mi_x_train)
