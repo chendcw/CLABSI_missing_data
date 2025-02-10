@@ -52,6 +52,17 @@ init_coefs <- function(){
   return(results)
 }
 
+init_timings <- function(){
+  
+  results <- tibble(type = character(),
+                    value = double(),
+                    train_set = character(),
+                    model = character(),
+                    LM = double())
+  
+  return(results)
+}
+
 init_results_sumstats <- function(){
   
   summary_results <- tibble(median_AUC = character(),
